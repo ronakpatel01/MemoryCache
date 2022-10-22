@@ -1,0 +1,16 @@
+F:\_Coding & Devlopment\repos\MemoryCache\MemoryCacheTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+F:\_Coding & Devlopment\repos\MemoryCache\MemoryCacheTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+F:\_Coding & Devlopment\repos\MemoryCache\MemoryCacheTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+F:\_Coding & Devlopment\repos\MemoryCache\MemoryCacheTest\bin\Debug\MemoryCacheTest.dll
+F:\_Coding & Devlopment\repos\MemoryCache\MemoryCacheTest\bin\Debug\MemoryCacheTest.pdb
+F:\_Coding & Devlopment\repos\MemoryCache\MemoryCacheTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+F:\_Coding & Devlopment\repos\MemoryCache\MemoryCacheTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+F:\_Coding & Devlopment\repos\MemoryCache\MemoryCacheTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+F:\_Coding & Devlopment\repos\MemoryCache\MemoryCacheTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+F:\_Coding & Devlopment\repos\MemoryCache\MemoryCacheTest\obj\Debug\MemoryCacheTest.csprojAssemblyReference.cache
+F:\_Coding & Devlopment\repos\MemoryCache\MemoryCacheTest\obj\Debug\MemoryCacheTest.csproj.CoreCompileInputs.cache
+F:\_Coding & Devlopment\repos\MemoryCache\MemoryCacheTest\obj\Debug\MemoryCacheTest.csproj.CopyComplete
+F:\_Coding & Devlopment\repos\MemoryCache\MemoryCacheTest\obj\Debug\MemoryCacheTest.dll
+F:\_Coding & Devlopment\repos\MemoryCache\MemoryCacheTest\obj\Debug\MemoryCacheTest.pdb
+F:\_Coding & Devlopment\repos\MemoryCache\MemoryCacheTest\bin\Debug\Finbourne.MemoryCache.dll
+F:\_Coding & Devlopment\repos\MemoryCache\MemoryCacheTest\bin\Debug\Finbourne.MemoryCache.pdb

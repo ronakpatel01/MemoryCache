@@ -1,6 +1,7 @@
 ﻿using Finbourne.MemoryCache;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Threading;
 
 namespace MemoryCacheTest
 {
@@ -14,12 +15,14 @@ namespace MemoryCacheTest
 
 
     [TestClass]
-    public class MemoryCacheTests 
+    public class MemoryCacheTests
     {
         [TestMethod]
         public void TestAddToCache()
         {
             IMemoryCache mc = MemoryCache.Instance(5);
+            mc.Clear();
+            mc.UpdateCacheSize(5);
 
             mc.Add("Fred", new User { FirstName = "Fred", Surname = "Smith", DOB = new DateTime(1995, 01, 15) });
 
@@ -35,6 +38,8 @@ namespace MemoryCacheTest
         public void TestAddExistingwithoutReplacing()
         {
             IMemoryCache mc = MemoryCache.Instance(5);
+            mc.Clear();
+            mc.UpdateCacheSize(5);
 
             mc.Add("Fred", new User { FirstName = "Fred", Surname = "Smith", DOB = new DateTime(1995, 01, 15) });
             mc.Add("Fred", new User { FirstName = "James", Surname = "Layley", DOB = new DateTime(1990, 08, 03) });
@@ -51,6 +56,8 @@ namespace MemoryCacheTest
         public void TestAddExistingwithReplacing()
         {
             IMemoryCache mc = MemoryCache.Instance(5);
+            mc.Clear();
+            mc.UpdateCacheSize(5);
 
             mc.AddOrReplace("Fred", new User { FirstName = "Fred", Surname = "Smith", DOB = new DateTime(1995, 01, 15) });
             mc.AddOrReplace("Fred", new User { FirstName = "James", Surname = "Layley", DOB = new DateTime(1990, 08, 03) });
@@ -66,34 +73,41 @@ namespace MemoryCacheTest
         [TestMethod]
         public void TestMultipleAdds()
         {
-            IMemoryCache mc = MemoryCache.Instance(5);
+            lock ("test4")
+            {
+                IMemoryCache mc = MemoryCache.Instance(5);
+                mc.Clear();
+                mc.UpdateCacheSize(5);
 
-            mc.Add("Fred", new User { FirstName = "Fred", Surname = "Smith", DOB = new DateTime(1995, 01, 15) });
-            mc.Add("James", new User { FirstName = "James", Surname = "Layley", DOB = new DateTime(1990, 08, 03) });
-            mc.Add("Mike", new User { FirstName = "Mike", Surname = "Bloggs", DOB = new DateTime(1963, 09, 17) });
+                mc.Add("Fred", new User { FirstName = "Fred", Surname = "Smith", DOB = new DateTime(1995, 01, 15) });
+                mc.Add("James", new User { FirstName = "James", Surname = "Layley", DOB = new DateTime(1990, 08, 03) });
+                mc.Add("Mike", new User { FirstName = "Mike", Surname = "Bloggs", DOB = new DateTime(1963, 09, 17) });
 
-            Assert.AreEqual(3, mc.GetCount());
+                Assert.AreEqual(3, mc.GetCount());
 
-            User userFred = mc.Get("Fred") as User;
-            Assert.AreEqual("Fred", userFred.FirstName);
-            Assert.AreEqual("Smith", userFred.Surname);
-            Assert.AreEqual(new DateTime(1995, 01, 15), userFred.DOB);
+                User userFred = mc.Get("Fred") as User;
+                Assert.AreEqual("Fred", userFred.FirstName);
+                Assert.AreEqual("Smith", userFred.Surname);
+                Assert.AreEqual(new DateTime(1995, 01, 15), userFred.DOB);
 
-            User userJames = mc.Get("James") as User;
-            Assert.AreEqual("James", userJames.FirstName);
-            Assert.AreEqual("Layley", userJames.Surname);
-            Assert.AreEqual(new DateTime(1990, 08, 03), userJames.DOB);
+                User userJames = mc.Get("James") as User;
+                Assert.AreEqual("James", userJames.FirstName);
+                Assert.AreEqual("Layley", userJames.Surname);
+                Assert.AreEqual(new DateTime(1990, 08, 03), userJames.DOB);
 
-            User userMike = mc.Get("Mike") as User;
-            Assert.AreEqual("Mike", userMike.FirstName);
-            Assert.AreEqual("Bloggs", userMike.Surname);
-            Assert.AreEqual(new DateTime(1963, 09, 17), userMike.DOB);
+                User userMike = mc.Get("Mike") as User;
+                Assert.AreEqual("Mike", userMike.FirstName);
+                Assert.AreEqual("Bloggs", userMike.Surname);
+                Assert.AreEqual(new DateTime(1963, 09, 17), userMike.DOB);
+            }
         }
 
         [TestMethod]
         public void TestContains()
         {
             IMemoryCache mc = MemoryCache.Instance(5);
+            mc.Clear();
+            mc.UpdateCacheSize(5);
 
             mc.Add("Fred", new User { FirstName = "Fred", Surname = "Smith", DOB = new DateTime(1995, 01, 15) });
             mc.Add("James", new User { FirstName = "James", Surname = "Layley", DOB = new DateTime(1990, 08, 03) });
@@ -109,6 +123,8 @@ namespace MemoryCacheTest
         public void TestRemove()
         {
             IMemoryCache mc = MemoryCache.Instance(5);
+            mc.Clear();
+            mc.UpdateCacheSize(5);
 
             mc.Add("Fred", new User { FirstName = "Fred", Surname = "Smith", DOB = new DateTime(1995, 01, 15) });
             mc.Add("James", new User { FirstName = "James", Surname = "Layley", DOB = new DateTime(1990, 08, 03) });
@@ -125,6 +141,8 @@ namespace MemoryCacheTest
         public void TestOverflow()
         {
             IMemoryCache mc = MemoryCache.Instance(2);
+            mc.Clear();
+            mc.UpdateCacheSize(5);
 
             mc.Add("Fred", new User { FirstName = "Fred", Surname = "Smith", DOB = new DateTime(1995, 01, 15) });
             mc.Add("James", new User { FirstName = "James", Surname = "Layley", DOB = new DateTime(1990, 08, 03) });
@@ -139,6 +157,8 @@ namespace MemoryCacheTest
         public void TestOverflowAfterRead()
         {
             IMemoryCache mc = MemoryCache.Instance(2);
+            mc.Clear();
+            mc.UpdateCacheSize(5);
 
             mc.Add("Fred", new User { FirstName = "Fred", Surname = "Smith", DOB = new DateTime(1995, 01, 15) });
             mc.Add("James", new User { FirstName = "James", Surname = "Layley", DOB = new DateTime(1990, 08, 03) });
@@ -154,6 +174,8 @@ namespace MemoryCacheTest
         public void TestGetAll()
         {
             IMemoryCache mc = MemoryCache.Instance(5);
+            mc.Clear();
+            mc.UpdateCacheSize(5);
 
             mc.Add("Fred", new User { FirstName = "Fred", Surname = "Smith", DOB = new DateTime(1995, 01, 15) });
             mc.Add("James", new User { FirstName = "James", Surname = "Layley", DOB = new DateTime(1990, 08, 03) });

@@ -5,6 +5,8 @@ namespace Finbourne.MemoryCache
 {
     public interface IMemoryCache : IEnumerable<KeyValuePair<string, object>>
     {
+        void Clear();
+        void UpdateCacheSize(int cacheSize);
         object Get(string key);
         void Add(string key, object value);
         void AddOrReplace(string key, object value);

@@ -20,7 +20,7 @@ namespace Finbourne.MemoryCache
             }
         }
 
-        private readonly int maximumCacheSize;
+        private int maximumCacheSize;
         private Dictionary<string, CachedObject> cachedObjects = new Dictionary<string, CachedObject>();
         private SortedList<int, string> objectsUpdatedStamps = new SortedList<int, string>();
 
@@ -90,6 +90,17 @@ namespace Finbourne.MemoryCache
 
         private void checkOverFlow()
         {
+        }
+
+        public void Clear()
+        {
+            cachedObjects = new Dictionary<string, CachedObject>();
+            objectsUpdatedStamps = new SortedList<int, string>();
+        }
+
+        public void UpdateCacheSize(int cacheSize)
+        {
+            this.maximumCacheSize = cacheSize;
         }
 
         public void Add(string key, object value)

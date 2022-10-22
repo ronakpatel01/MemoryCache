@@ -20,7 +20,7 @@ namespace MemoryCacheTest
         [TestMethod]
         public void TestAddToCache()
         {
-            IMemoryCache mc = MemoryCache.Instance(5);
+            IMemoryCache mc = MemoryCache.Instance;
             mc.Clear();
             mc.UpdateCacheSize(5);
 
@@ -37,7 +37,7 @@ namespace MemoryCacheTest
         [TestMethod]
         public void TestAddExistingwithoutReplacing()
         {
-            IMemoryCache mc = MemoryCache.Instance(5);
+            IMemoryCache mc = MemoryCache.Instance;
             mc.Clear();
             mc.UpdateCacheSize(5);
 
@@ -55,7 +55,7 @@ namespace MemoryCacheTest
         [TestMethod]
         public void TestAddExistingwithReplacing()
         {
-            IMemoryCache mc = MemoryCache.Instance(5);
+            IMemoryCache mc = MemoryCache.Instance;
             mc.Clear();
             mc.UpdateCacheSize(5);
 
@@ -75,7 +75,7 @@ namespace MemoryCacheTest
         {
             lock ("test4")
             {
-                IMemoryCache mc = MemoryCache.Instance(5);
+                IMemoryCache mc = MemoryCache.Instance;
                 mc.Clear();
                 mc.UpdateCacheSize(5);
 
@@ -105,7 +105,7 @@ namespace MemoryCacheTest
         [TestMethod]
         public void TestContains()
         {
-            IMemoryCache mc = MemoryCache.Instance(5);
+            IMemoryCache mc = MemoryCache.Instance;
             mc.Clear();
             mc.UpdateCacheSize(5);
 
@@ -122,7 +122,7 @@ namespace MemoryCacheTest
         [TestMethod]
         public void TestRemove()
         {
-            IMemoryCache mc = MemoryCache.Instance(5);
+            IMemoryCache mc = MemoryCache.Instance;
             mc.Clear();
             mc.UpdateCacheSize(5);
 
@@ -140,7 +140,7 @@ namespace MemoryCacheTest
         [TestMethod]
         public void TestOverflow()
         {
-            IMemoryCache mc = MemoryCache.Instance(2);
+            IMemoryCache mc = MemoryCache.Instance;
             mc.Clear();
             mc.UpdateCacheSize(2);
 
@@ -156,7 +156,7 @@ namespace MemoryCacheTest
         [TestMethod]
         public void TestOverflowAfterRead()
         {
-            IMemoryCache mc = MemoryCache.Instance(2);
+            IMemoryCache mc = MemoryCache.Instance;
             mc.Clear();
             mc.UpdateCacheSize(2);
 
@@ -173,7 +173,7 @@ namespace MemoryCacheTest
         [TestMethod]
         public void TestGetAll()
         {
-            IMemoryCache mc = MemoryCache.Instance(5);
+            IMemoryCache mc = MemoryCache.Instance;
             mc.Clear();
             mc.UpdateCacheSize(5);
 

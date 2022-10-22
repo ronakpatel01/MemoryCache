@@ -34,30 +34,34 @@ namespace Finbourne.MemoryCache
                     return cachedObjectsKeysList.Keys[cachedObjectsKeysList.Count - 1];
             } 
         }
-        static MemoryCache instance;
+
+        private static readonly MemoryCache instance = new MemoryCache();
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="maximumCacheSize"></param>
-        protected MemoryCache(int maximumCacheSize)
+        private MemoryCache()
         {
-            this.maximumCacheSize = maximumCacheSize;
         }
+
+        static MemoryCache()
+        {
+        }
+
+
 
         /// <summary>
         /// Singleton Instance
         /// </summary>
         /// <param name="maximumCacheSize"></param>
         /// <returns></returns>
-        public static MemoryCache Instance(int maximumCacheSize)
+        public static MemoryCache Instance
         {
-            if (instance == null)
+            get
             {
-                instance = new MemoryCache(maximumCacheSize);
+                return instance;
             }
-
-            return instance;
         }
 
         private void UpdateCache(string key, object value)

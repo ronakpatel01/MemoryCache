@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "m5LCjbR1NR2R5lHgdHPJhPFFQDRuqsDchbk2WB8xObJVDRjNA082uEAaL/4Yel2JDGYNAcFflGJ6JPCiVVG0XQ==",
+  "success": true,
+  "projectFilePath": "F:\\_Coding & Devlopment\\repos\\MemoryCache\\MemoryCache\\MemoryCache.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Ronak\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\Ronak\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

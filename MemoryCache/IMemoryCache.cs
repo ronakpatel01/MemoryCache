@@ -1,10 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace MemoryCache
 {
-    interface IMemoryCache
+    public interface IMemoryCache
     {
+        object Get(string key);
+        void Add(string key, object value);
+        void AddOrReplace(string key, object value);
+        KeyValuePair<string, object> getAll();
+        IEnumerator<KeyValuePair<string, object>> GetEnumerator();
+        bool Contains(string key);
+        int GetCount();
+
     }
 }

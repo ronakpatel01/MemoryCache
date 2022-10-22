@@ -6,12 +6,50 @@ namespace Finbourne.MemoryCache
 {
     public class MemoryCache : IMemoryCache
     {
-        static MemoryCache instance;
-
-        protected MemoryCache(int maximumCacheSize)
+        private class CachedObject
         {
+            public int ID { get; set; }
+            public object Value { get; set; }
+            public DateTime UsedDateTime { get; set; }
+
+            public CachedObject(int id, object value, DateTime usedDateTime)
+            {
+                ID = id;
+                Value = value;
+                UsedDateTime = usedDateTime;
+            }
         }
 
+        private readonly int maximumCacheSize;
+        private Dictionary<string, CachedObject> cachedObjects = new Dictionary<string, CachedObject>();
+        private SortedList<int, string> objectsUpdatedStamps = new SortedList<int, string>();
+
+        private int MaxId 
+        {
+            get 
+            {
+                if (objectsUpdatedStamps.Count == 0)
+                    return -1;
+                else
+                    return objectsUpdatedStamps.Keys[objectsUpdatedStamps.Count - 1];
+            } 
+        }
+        static MemoryCache instance;
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="maximumCacheSize"></param>
+        protected MemoryCache(int maximumCacheSize)
+        {
+            this.maximumCacheSize = maximumCacheSize;
+        }
+
+        /// <summary>
+        /// Singleton Instance
+        /// </summary>
+        /// <param name="maximumCacheSize"></param>
+        /// <returns></returns>
         public static MemoryCache Instance(int maximumCacheSize)
         {
             if (instance == null)
@@ -22,14 +60,49 @@ namespace Finbourne.MemoryCache
             return instance;
         }
 
+        private void UpdateCache(string key, object value)
+        {
+            if (!cachedObjects.ContainsKey(key))
+                return;
+
+            int newId = MaxId + 1;
+
+            objectsUpdatedStamps.Remove(cachedObjects[key].ID);
+            objectsUpdatedStamps[newId] = key;
+            cachedObjects[key] = new CachedObject(newId, value, DateTime.Now);
+
+            checkOverFlow();
+        }
+
+        private void AddToCache(string key, object value)
+        {
+            if (cachedObjects.ContainsKey(key))
+                UpdateCache(key, value);
+            else
+            {
+                int newId = MaxId + 1;
+                objectsUpdatedStamps[newId] = key;
+                cachedObjects[key] = new CachedObject(newId, value, DateTime.Now);
+
+                checkOverFlow();
+            }
+        }
+
+        private void checkOverFlow()
+        {
+        }
+
         public void Add(string key, object value)
         {
-            throw new NotImplementedException();
+            if (!cachedObjects.ContainsKey(key))
+            {
+                AddToCache(key, value);
+            }
         }
 
         public void AddOrReplace(string key, object value)
         {
-            throw new NotImplementedException();
+            AddToCache(key, value);
         }
 
         public void Remove(string key)
@@ -44,12 +117,19 @@ namespace Finbourne.MemoryCache
 
         public object Get(string key)
         {
-            throw new NotImplementedException();
+            if (!cachedObjects.ContainsKey(key))
+                return null;
+
+            int newId = MaxId + 1;
+            objectsUpdatedStamps.Remove(cachedObjects[key].ID);
+            objectsUpdatedStamps[newId] = key;
+            return cachedObjects[key].Value;
+            
         }
 
         public int GetCount()
         {
-            throw new NotImplementedException();
+            return cachedObjects.Count;
         }
 
         public IEnumerator<KeyValuePair<string, object>> GetEnumerator()

@@ -142,7 +142,7 @@ namespace MemoryCacheTest
         {
             IMemoryCache mc = MemoryCache.Instance(2);
             mc.Clear();
-            mc.UpdateCacheSize(5);
+            mc.UpdateCacheSize(2);
 
             mc.Add("Fred", new User { FirstName = "Fred", Surname = "Smith", DOB = new DateTime(1995, 01, 15) });
             mc.Add("James", new User { FirstName = "James", Surname = "Layley", DOB = new DateTime(1990, 08, 03) });
@@ -158,7 +158,7 @@ namespace MemoryCacheTest
         {
             IMemoryCache mc = MemoryCache.Instance(2);
             mc.Clear();
-            mc.UpdateCacheSize(5);
+            mc.UpdateCacheSize(2);
 
             mc.Add("Fred", new User { FirstName = "Fred", Surname = "Smith", DOB = new DateTime(1995, 01, 15) });
             mc.Add("James", new User { FirstName = "James", Surname = "Layley", DOB = new DateTime(1990, 08, 03) });

@@ -71,7 +71,7 @@ namespace Finbourne.MemoryCache
             cachedObjectsKeysList[newId] = key;
             cachedObjects[key] = new CachedObject(newId, value, DateTime.Now);
 
-            checkOverFlow();
+            CheckOverFlow();
         }
 
         private void AddToCache(string key, object value)
@@ -84,12 +84,17 @@ namespace Finbourne.MemoryCache
                 cachedObjectsKeysList[newId] = key;
                 cachedObjects[key] = new CachedObject(newId, value, DateTime.Now);
 
-                checkOverFlow();
+                CheckOverFlow();
             }
         }
 
-        private void checkOverFlow()
+        private void CheckOverFlow()
         {
+            while (cachedObjects.Count > maximumCacheSize)
+            {
+                cachedObjects.Remove(cachedObjectsKeysList.Values[0]);
+                cachedObjectsKeysList.Remove(cachedObjectsKeysList.Keys[0]);
+            }
         }
 
         public void Clear()

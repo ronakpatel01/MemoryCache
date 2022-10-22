@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace MemoryCache
+namespace Finbourne.MemoryCache
 {
     public interface IMemoryCache
     {

@@ -1,10 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace MemoryCache
+namespace Finbourne.MemoryCache
 {
     public class MemoryCache : IMemoryCache
     {
+        public MemoryCache(int maximumCacheSize)
+        {
+        }
+
+
         public void Add(string key, object value)
         {
             throw new NotImplementedException();

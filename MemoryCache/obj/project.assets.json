@@ -185,9 +185,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\_Coding & Devlopment\\repos\\MemoryCache\\MemoryCache\\MemoryCache.csproj",
-      "projectName": "MemoryCache",
-      "projectPath": "F:\\_Coding & Devlopment\\repos\\MemoryCache\\MemoryCache\\MemoryCache.csproj",
+      "projectUniqueName": "F:\\_Coding & Devlopment\\repos\\MemoryCache\\MemoryCache\\Finbourne.MemoryCache.csproj",
+      "projectName": "Finbourne.MemoryCache",
+      "projectPath": "F:\\_Coding & Devlopment\\repos\\MemoryCache\\MemoryCache\\Finbourne.MemoryCache.csproj",
       "packagesPath": "C:\\Users\\Ronak\\.nuget\\packages\\",
       "outputPath": "F:\\_Coding & Devlopment\\repos\\MemoryCache\\MemoryCache\\obj\\",
       "projectStyle": "PackageReference",

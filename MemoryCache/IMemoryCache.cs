@@ -14,6 +14,6 @@ namespace Finbourne.MemoryCache
         // We are assuming that the Contains Method is not used when removing the least recently used.
         bool Contains(string key);
         int GetCount();
-
+        List<Tuple<string, DateTime>> GetEvictedKeys();
     }
 }

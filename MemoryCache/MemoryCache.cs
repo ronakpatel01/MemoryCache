@@ -23,6 +23,7 @@ namespace Finbourne.MemoryCache
         private int maximumCacheSize;
         private Dictionary<string, CachedObject> cachedObjects = new Dictionary<string, CachedObject>();
         private SortedList<int, string> cachedObjectsKeysList = new SortedList<int, string>();
+        private List<Tuple<string, DateTime>> evictedKeys = new List<Tuple<string, DateTime>>();
 
         private int MaxId 
         {
@@ -96,7 +97,9 @@ namespace Finbourne.MemoryCache
         {
             while (cachedObjects.Count > maximumCacheSize)
             {
-                cachedObjects.Remove(cachedObjectsKeysList.Values[0]);
+                string key = cachedObjectsKeysList.Values[0];
+                evictedKeys.Add(new Tuple<string, DateTime>(key, cachedObjects[key].UsedDateTime));
+                cachedObjects.Remove(key);
                 cachedObjectsKeysList.Remove(cachedObjectsKeysList.Keys[0]);
             }
         }
@@ -164,6 +167,11 @@ namespace Finbourne.MemoryCache
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
+        }
+
+        public List<Tuple<string, DateTime>> GetEvictedKeys()
+        {
+            return evictedKeys;
         }
     }
 }

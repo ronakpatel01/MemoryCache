@@ -213,5 +213,25 @@ namespace MemoryCacheTest
                 }
             }
         }
+
+        [TestMethod]
+        public void TestEvictedList()
+        {
+            IMemoryCache mc = MemoryCache.Instance;
+            mc.Clear();
+            mc.UpdateCacheSize(2);
+
+            mc.Add("Fred", new User { FirstName = "Fred", Surname = "Smith", DOB = new DateTime(1995, 01, 15) });
+            mc.Add("James", new User { FirstName = "James", Surname = "Layley", DOB = new DateTime(1990, 08, 03) });
+            mc.Add("Mike", new User { FirstName = "Mike", Surname = "Bloggs", DOB = new DateTime(1963, 09, 17) });
+            mc.Add("Rod", new User { FirstName = "Rod", Surname = "Peters", DOB = new DateTime(1983, 03, 25) });
+
+            var evicted = mc.GetEvictedKeys();
+
+            Assert.AreEqual(1, evicted.FindAll(t => t.Item1 == "Fred").Count);
+            Assert.AreEqual(1, evicted.FindAll(t => t.Item1 == "James").Count);
+            Assert.AreEqual(0, evicted.FindAll(t => t.Item1 == "Mike").Count);
+            Assert.AreEqual(0, evicted.FindAll(t => t.Item1 == "Rod").Count);
+        }
     }
 }

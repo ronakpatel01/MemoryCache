@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace Finbourne.MemoryCache
@@ -31,6 +32,11 @@ namespace Finbourne.MemoryCache
             throw new NotImplementedException();
         }
 
+        public void Remove(string key)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool Contains(string key)
         {
             throw new NotImplementedException();
@@ -41,17 +47,17 @@ namespace Finbourne.MemoryCache
             throw new NotImplementedException();
         }
 
-        public KeyValuePair<string, object> GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
         public int GetCount()
         {
             throw new NotImplementedException();
         }
 
         public IEnumerator<KeyValuePair<string, object>> GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
         {
             throw new NotImplementedException();
         }

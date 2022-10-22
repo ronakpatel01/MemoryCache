@@ -5,10 +5,21 @@ namespace Finbourne.MemoryCache
 {
     public class MemoryCache : IMemoryCache
     {
-        public MemoryCache(int maximumCacheSize)
+        static MemoryCache instance;
+
+        protected MemoryCache(int maximumCacheSize)
         {
         }
 
+        public static MemoryCache Instance(int maximumCacheSize)
+        {
+            if (instance == null)
+            {
+                instance = new MemoryCache(maximumCacheSize);
+            }
+
+            return instance;
+        }
 
         public void Add(string key, object value)
         {

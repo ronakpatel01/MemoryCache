@@ -146,12 +146,15 @@ namespace Finbourne.MemoryCache
 
         public IEnumerator<KeyValuePair<string, object>> GetEnumerator()
         {
-            throw new NotImplementedException();
+            foreach (KeyValuePair<string, CachedObject> cachedObject in cachedObjects)
+            {
+                yield return new KeyValuePair<string, object>(cachedObject.Key, cachedObject.Value.Value);
+            }
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            throw new NotImplementedException();
+            return GetEnumerator();
         }
     }
 }

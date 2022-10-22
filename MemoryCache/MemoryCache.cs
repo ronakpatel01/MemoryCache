@@ -116,7 +116,7 @@ namespace Finbourne.MemoryCache
             AddToCache(key, value);
         }
 
-        public void c(string key)
+        public void Remove(string key)
         {
             cachedObjectsKeysList.Remove(cachedObjects[key].ID);
             cachedObjects.Remove(key);

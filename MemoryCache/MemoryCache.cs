@@ -25,7 +25,7 @@ namespace MemoryCache
             throw new NotImplementedException();
         }
 
-        public KeyValuePair<string, object> getAll()
+        public KeyValuePair<string, object> GetAll()
         {
             throw new NotImplementedException();
         }
